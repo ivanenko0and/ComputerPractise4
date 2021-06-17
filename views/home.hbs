@@ -1,0 +1,74 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
+<button id="show_button">Show</button>
+<p id="dir"></p>
+
+
+<form name="email_form" id="email_form">
+    <p>Enter email:</p>
+    <input name="email" id="textbox" type="email" pattern=".+@.+\..+">
+    <input id="form_button" type="button" value="Confirm">
+    <p id="label"></p>
+</form>
+
+
+<script>
+    /*
+    form_button.addEventListener('click', verification)
+    
+
+    function verification() {
+
+        if(textbox.validity.patternMismatch){
+            var text = document.getElementById('textbox');
+            text.style.border = "2px solid rgba(255, 0, 0)";
+
+            var label = document.getElementById('label');
+            label.innerHTML = "Wrong email!";
+
+        }else{
+            var text = document.getElementById('textbox');
+            text.style.border = "1px solid rgba(0, 0, 0)";
+
+            var label = document.getElementById('label');
+            label.innerHTML = "Success!";
+        }
+
+    }
+    */
+    
+    
+    
+    $(document).ready(function(){
+        $("#form_button").click(function(){
+            if(textbox.validity.patternMismatch){
+                textbox.style.border = "2px solid rgba(255, 0, 0)";
+                label.innerHTML = "Wrong email!";
+            }else{
+                textbox.style.border = "1px solid rgba(0, 0, 0)";
+                label.innerHTML = "Success!";
+            }
+        });
+    });
+    
+    
+    
+    $(document).ready(function(){
+        $("#show_button").click(function(){
+        $.post("/dir",
+        {
+          email: `${textbox.value}`
+        },
+        function(data,status){
+            document.getElementById("dir").innerHTML = data;
+        });
+      });
+    });
+    
+    
+    
+    
+
+</script>
